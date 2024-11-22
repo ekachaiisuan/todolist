@@ -4,7 +4,7 @@ import {useTodoStore} from '../stores/todo'
 const todoStore = useTodoStore()
 const todoText = ref('')
 const addTodo = async(todoText)=>{
-    await todoStore.addTodo(todoText)
+    await todoStore.addTodo(todoText) //test git
 }
 
 onMounted(async()=>{
