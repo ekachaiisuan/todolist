@@ -9,7 +9,7 @@ const addTodo = async(todoText)=>{
 
 onMounted(async()=>{
  await todoStore.loadTodos()
- console.log(todoStore.list)
+ console.log(todoStore.list) //test git
 })
 
 </script>
