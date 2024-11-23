@@ -33,20 +33,22 @@ export const useTodoStore = defineStore('todo', {
             status: 'Pending'
         }
         try {
-          const response = await axios.post(`${url}${id}`,bodyData);
+          const response = await axios.post(`${url}`,bodyData);
+          console.log(response.data)
+          this.list.push(response.data)
           this.msg = 'insert complete'
         } catch (error) {
           console.log('error :', error);
         }
       },
-      async editTodo(todoText,id) {
+      async editTodo(status,id) {
         const bodyData = {
-            name:todoText,
-            status: 'Doing'
+            status: status
         }
         try {
-          const response = await axios.put(`${url}${id}`);
-          this.msg = 'edit complete'
+          const response = await axios.put(`${url}${id}`,bodyData);
+          console.log(response.data)
+          this.msg = 'edit status complete'
         } catch (error) {
           console.log('error :', error);
         }
@@ -55,7 +57,10 @@ export const useTodoStore = defineStore('todo', {
         
         try {
           const response = await axios.delete(`${url}${id}`);
+          console.log(response.data)
           this.msg = 'delete complete'
+          console.log(this.msg)
+          
         } catch (error) {
           console.log('error :', error);
         }
