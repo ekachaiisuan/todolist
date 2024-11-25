@@ -53,6 +53,19 @@ export const useTodoStore = defineStore('todo', {
           console.log('error :', error);
         }
       },
+      async editDataTodo(data,id) {
+        const bodyData = {
+            name : data.name,
+            status : data.status
+        }
+        try {
+          const response = await axios.put(`${url}${id}`,bodyData);
+          console.log(response.data)
+          this.msg = 'edit data complete'
+        } catch (error) {
+          console.log('error :', error);
+        }
+      },
       async delTodo(id) {
         
         try {
