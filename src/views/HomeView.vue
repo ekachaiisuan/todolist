@@ -1,5 +1,5 @@
 <script setup>
-import { onMounted, ref,computed } from 'vue'
+import { onMounted, ref, computed } from 'vue'
 import { useTodoStore } from '../stores/todo'
 import { RouterLink } from 'vue-router'
 import Loading from '../components/Loading.vue';
@@ -61,11 +61,11 @@ const removeTodo = async (todo) => {
 
 }
 
-const changeSelStat = (status)=>{
+const changeSelStat = (status) => {
     selectedStatus.value = status
 }
 
-const filterTodoList = computed(()=>{
+const filterTodoList = computed(() => {
     return todoStore.list.filter(todo => todo.status === selectedStatus.value)
 })
 
@@ -86,10 +86,10 @@ onMounted(async () => {
 <template>
     <div>
         Todo List
-        
-        <div class="flex">
-            <input class="input input-bordered w-full max-w-xs" type="text" v-model="todoText" placeholder="in here">
-            <button @click="addTodo(todoText)">add</button>
+
+        <div class="grid grid-cols-4 gap-4">
+            <input class="input input-bordered col-span-2" type="text" v-model="todoText" placeholder="in here">
+            <button @click="addTodo(todoText)" class="btn btn-primary">add</button>
         </div>
         <div>
             {{ todoStore.msg }}
@@ -101,7 +101,8 @@ onMounted(async () => {
         <Loading v-if="isLoading">
         </Loading>
         <div role="tablist" class="tabs tabs-boxed mt-4">
-            <a role="tab" :class="status === selectedStatus ? 'tab tab-active' : 'tab'" v-for = "status in todoStore.statuses" @click="changeSelStat(status)">{{ status }}</a>
+            <a role="tab" :class="status === selectedStatus ? 'tab tab-active' : 'tab'"
+                v-for="status in todoStore.statuses" @click="changeSelStat(status)">{{ status }}</a>
         </div>
         <div class="flex justify-between items-center" v-for="todo in filterTodoList"> <!--todoStore.list-->
             <div>
